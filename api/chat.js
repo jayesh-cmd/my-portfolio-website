@@ -1,36 +1,43 @@
-export default async function handler(req, res) {
+export const config = {
+  runtime: "edge",
+};
+
+export default async function handler(req) {
   try {
     if (req.method !== "POST") {
-      return res.status(405).json({ error: "POST only" });
+      return new Response(JSON.stringify({ error: "POST only" }), {
+        status: 405,
+        headers: { "Content-Type": "application/json" },
+      });
     }
 
-    // Parse body safely
-    const body = await new Promise((resolve) => {
-      let data = "";
-      req.on("data", chunk => data += chunk);
-      req.on("end", () => resolve(JSON.parse(data || "{}")));
+    // ✅ Parse body using Web API
+    const body = await req.json();
+
+    const groqRes = await fetch("https://api.groq.com/openai/v1/chat/completions", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${process.env.GROQ_API_KEY}`,
+      },
+      body: JSON.stringify({
+        model: "llama3-8b-8192",
+        messages: body.messages,
+        temperature: 0.7,
+      }),
     });
 
-    const groqRes = await fetch(
-      "https://api.groq.com/openai/v1/chat/completions",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "Authorization": `Bearer ${process.env.GROQ_API_KEY}`
-        },
-        body: JSON.stringify({
-          model: "llama3-8b-8192",
-          messages: body.messages,
-          temperature: 0.7
-        })
-      }
-    );
-
     const data = await groqRes.json();
-    return res.status(200).json(data);
+
+    return new Response(JSON.stringify(data), {
+      status: 200,
+      headers: { "Content-Type": "application/json" },
+    });
 
   } catch (error) {
-    return res.status(500).json({ error: error.message });
+    return new Response(
+      JSON.stringify({ error: error.message }),
+      { status: 500, headers: { "Content-Type": "application/json" } }
+    );
   }
 }
