@@ -82,29 +82,29 @@ export default async function handler(req) {
 
   try {
     const { messages } = await req.json();
-    const apiKey = process.env.XAI_API_KEY; // Changed to XAI_API_KEY
+    const apiKey = process.env.GROQ_API_KEY;
     
     if (!apiKey) {
-      throw new Error('XAI_API_KEY not configured');
+      throw new Error('GROQ_API_KEY not configured');
     }
 
-    // Format messages for Grok API (OpenAI-compatible format)
+    // Format messages for Groq API
     const formattedMessages = [
       {
         role: 'system',
         content: RESUME_CONTEXT
       },
-      ...messages.slice(-5) // Keep last 5 messages for context
+      ...messages.slice(-5)
     ];
 
-    const response = await fetch('https://api.x.ai/v1/chat/completions', {
+    const response = await fetch('https://api.groq.com/openai/v1/chat/completions', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
         'Authorization': `Bearer ${apiKey}`,
       },
       body: JSON.stringify({
-        model: 'grok-beta', // Free tier model
+        model: 'llama-3.3-70b-versatile', // Fast and free model
         messages: formattedMessages,
         temperature: 0.7,
         max_tokens: 1000,
@@ -118,7 +118,6 @@ export default async function handler(req) {
 
     const data = await response.json();
 
-    // Grok uses OpenAI-compatible format, so response is already correct
     return new Response(
       JSON.stringify(data),
       {
