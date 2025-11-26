@@ -298,25 +298,21 @@ const CompactChat = () => {
     setInput('');
     setIsLoading(true);
 
-    // FIXED: calculate next count manually (React state is async)
     const nextCount = userMessageCount + 1;
     setUserMessageCount(nextCount);
 
-    // LIMIT CHECK (runs only AFTER user sends the 10th message)
     if (nextCount >= 10) {
         setTimeout(() => {
             setMessages(prev => [
                 ...prev,
                 {
                     role: "assistant",
-                    content:
-                        "You can contact me on LinkedIn - @cmd-jayesh ✨\nI’ve hit my message limit because I'm saving tokens for recruiters 😅"
+                    content: "You can contact me on LinkedIn - @cmd-jayesh ✨\nI've hit my message limit because I'm saving tokens for recruiters 😅"
                 }
             ]);
             setIsLoading(false);
         }, 600);
-
-        return; // stop further API calls
+        return;
     }
 
     try {
@@ -324,12 +320,21 @@ const CompactChat = () => {
 
         const response = await fetch('/api/chat', {
           method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ messages: history })  // ✅ use history, not messages
+          headers: { 
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ messages: [...history, userMessage] })
         });
 
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+
         const data = await response.json();
-        if (data.error) throw new Error(data.error.message);
+        
+        if (data.error) {
+          throw new Error(data.error.message);
+        }
 
         setMessages(prev => [
           ...prev,
@@ -337,7 +342,11 @@ const CompactChat = () => {
         ]);
 
     } catch (error) {
-        setMessages(prev => [...prev, { role: 'assistant', content: "You can contect me Linkedin - @cmd-jayesh here \n Cause i want to save my tokens for recruiters 😅" }]);
+        console.error('Chat error:', error);
+        setMessages(prev => [...prev, { 
+          role: 'assistant', 
+          content: "Oops! Something went wrong. Please try asking again or contact me on LinkedIn - @cmd-jayesh 😊" 
+        }]);
     } finally {
         setIsLoading(false);
     }

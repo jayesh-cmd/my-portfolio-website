@@ -1,5 +1,6 @@
 export const config = {
   runtime: 'edge',
+  maxDuration: 30, // Increase timeout to 30 seconds
 };
 
 const RESUME_CONTEXT = `
@@ -62,6 +63,7 @@ GUIDELINES:
 `;
 
 export default async function handler(req) {
+  // CORS handling
   if (req.method === 'OPTIONS') {
     return new Response(null, {
       status: 200,
@@ -74,10 +76,16 @@ export default async function handler(req) {
   }
 
   if (req.method !== 'POST') {
-    return new Response(JSON.stringify({ error: { message: 'Method not allowed' } }), {
-      status: 405,
-      headers: { 'Content-Type': 'application/json' },
-    });
+    return new Response(
+      JSON.stringify({ error: { message: 'Method not allowed' } }), 
+      {
+        status: 405,
+        headers: { 
+          'Content-Type': 'application/json',
+          'Access-Control-Allow-Origin': '*',
+        },
+      }
+    );
   }
 
   try {
@@ -85,10 +93,11 @@ export default async function handler(req) {
     const apiKey = process.env.GROQ_API_KEY;
     
     if (!apiKey) {
+      console.error('API Key missing');
       throw new Error('GROQ_API_KEY not configured');
     }
 
-    // Format messages for Groq API
+    // Format messages
     const formattedMessages = [
       {
         role: 'system',
@@ -97,6 +106,12 @@ export default async function handler(req) {
       ...messages.slice(-5)
     ];
 
+    console.log('Sending request to Groq API...');
+
+    // Add timeout to fetch
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 25000); // 25s timeout
+
     const response = await fetch('https://api.groq.com/openai/v1/chat/completions', {
       method: 'POST',
       headers: {
@@ -104,19 +119,36 @@ export default async function handler(req) {
         'Authorization': `Bearer ${apiKey}`,
       },
       body: JSON.stringify({
-        model: 'llama-3.3-70b-versatile', // Fast and free model
+        model: 'llama-3.3-70b-versatile',
         messages: formattedMessages,
         temperature: 0.7,
-        max_tokens: 1000,
+        max_tokens: 800, // Reduced for faster response
+        stream: false,
       }),
+      signal: controller.signal,
     });
 
+    clearTimeout(timeoutId);
+
+    console.log('Response status:', response.status);
+
     if (!response.ok) {
-      const errorData = await response.json();
-      throw new Error(errorData.error?.message || 'API request failed');
+      const errorText = await response.text();
+      console.error('API Error:', errorText);
+      
+      // Handle specific errors
+      if (response.status === 429) {
+        throw new Error('Rate limit exceeded. Please wait a moment and try again.');
+      }
+      if (response.status === 401) {
+        throw new Error('Invalid API key. Please check configuration.');
+      }
+      
+      throw new Error(`API request failed: ${response.status}`);
     }
 
     const data = await response.json();
+    console.log('Success! Got response from Groq');
 
     return new Response(
       JSON.stringify(data),
@@ -125,15 +157,29 @@ export default async function handler(req) {
         headers: {
           'Content-Type': 'application/json',
           'Access-Control-Allow-Origin': '*',
+          'Cache-Control': 'no-cache',
         },
       }
     );
+
   } catch (error) {
     console.error('Chat API Error:', error);
+    
+    // Better error messages
+    let errorMessage = 'Something went wrong. Please try again.';
+    
+    if (error.name === 'AbortError') {
+      errorMessage = 'Request timeout. Please try again.';
+    } else if (error.message.includes('Rate limit')) {
+      errorMessage = error.message;
+    } else if (error.message.includes('API key')) {
+      errorMessage = 'Configuration error. Please contact support.';
+    }
+
     return new Response(
       JSON.stringify({
         error: {
-          message: error.message || 'Something went wrong',
+          message: errorMessage,
         },
       }),
       {
