@@ -320,16 +320,6 @@ const CompactChat = () => {
     }
 
     try {
-        const apiKey = import.meta.env?.VITE_OPENAI_API_KEY; 
-
-        if (!apiKey) {
-            await new Promise(resolve => setTimeout(resolve, 1000)); 
-            const fakeResponse = simulateRAGResponse(userMessage.content);
-            setMessages(prev => [...prev, { role: 'assistant', content: fakeResponse }]);
-            setIsLoading(false);
-            return;
-        }
-
         const history = messages.slice(-5);
 
         const response = await fetch('/api/chat', {
