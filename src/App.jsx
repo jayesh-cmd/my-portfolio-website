@@ -332,28 +332,20 @@ const CompactChat = () => {
 
         const history = messages.slice(-5);
 
-        const response = await fetch('https://api.openai.com/v1/chat/completions', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${apiKey}`
-            },
-            body: JSON.stringify({
-                model: "gpt-4",
-                messages: [
-                    { role: "system", content: RESUME_CONTEXT },
-                    ...history, 
-                    userMessage 
-                ],
-                temperature: 0.7,
-                max_tokens: 150 
-            })
+        const response = await fetch('/api/chat', {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ messages: history })  // ✅ use history, not messages
         });
 
         const data = await response.json();
         if (data.error) throw new Error(data.error.message);
 
-        setMessages(prev => [...prev, { role: 'assistant', content: data.choices[0].message.content }]);
+        setMessages(prev => [
+          ...prev,
+          { role: 'assistant', content: data.choices[0].message.content }
+        ]);
+
     } catch (error) {
         setMessages(prev => [...prev, { role: 'assistant', content: "You can contect me Linkedin - @cmd-jayesh here \n Cause i want to save my tokens for recruiters 😅" }]);
     } finally {
