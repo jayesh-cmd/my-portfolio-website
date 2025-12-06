@@ -46,9 +46,9 @@ PROJECTS:
    - Used FAISS for semantic search (<2s latency).
    - Reduced search time by ~80%.
 
-3. RAG-based Document Q&A Assistant
-   - LangChain + FAISS + OpenAI embeddings.
-   - 92%+ answer relevance. Reduced hallucinations by 23% via chunking optimization.
+3. InsightLense - Multi Model RAG
+   - Architected a multimodal RAG system capable of interpreting complex PDF layouts (charts, tables, text),
+   - achieving 95% accuracy in trend analysis vs. text-only models
 
 EDUCATION:
 - Integrated MCA at Acropolis Institute, Indore (2022-2027)
