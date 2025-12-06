@@ -676,10 +676,10 @@ export default function Portfolio() {
                 role="LangChain + LLamaParse + Vision Model"
                 description="An end-to-end solution enabling users to upload PDFs and query them. a multimodal RAG system capable of interpreting complex PDF layouts (charts, tables, text)"
                 stats={[
-                  { value: "1.8s", label: "Retrieval Latency" },
+                  { value: "95%", label: "Retrieval accuracy" },
                   { value: "92%+", label: "Answer Relevance" },
-                  { value: "10k", label: "Token Context" },
-                  { value: "23%", label: "Hallucination Drop" }
+                  { value: "Hybrid Retrieval", label: "BM25 + FAISS" },
+                  { value: "Multi-Model", label: "RAG + Vision + LLamaParse" }
                 ]}
                 repoLink="https://github.com/jayesh-cmd/InsightLense-Research_Document"
                 demoLink="https://www.linkedin.com/posts/cmd-jayesh_generativeai-langchain-softwareengineering-activity-7403148694578958338-1Fj7/?utm_source=share&utm_medium=member_desktop&rcm=ACoAAFlqJGoBl68XgWGQ56UL9i8cfNrN4L5nMUQ"
