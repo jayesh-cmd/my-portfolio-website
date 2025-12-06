@@ -69,9 +69,9 @@ PROJECTS:
    - Used FAISS for semantic search (<2s latency).
    - Reduced search time by ~80%.
 
-3. RAG-based Document Q&A Assistant
-   - LangChain + FAISS + OpenAI embeddings.
-   - 92%+ answer relevance. Reduced hallucinations by 23% via chunking optimization.
+3. InsightLense - Multi Model RAG
+   - Architected a multimodal RAG system capable of interpreting complex PDF layouts (charts, tables, text),
+   - achieving 95% accuracy in trend analysis vs. text-only models
 
 EDUCATION:
 - Integrated MCA at Acropolis Institute, Indore (2022-2027)
@@ -672,17 +672,17 @@ export default function Portfolio() {
 
             <div className="lg:col-span-3">
               <CosmicProject 
-                title="RAG-based Document Q&A Assistant"
-                role="LangChain + FAISS"
-                description="An end-to-end solution enabling users to upload PDFs and query them. Used OpenAI embeddings for semantic search and integrated chunking optimization to reduce hallucinations by 23%."
+                title="InsightLense - Multi Model RAG"
+                role="LangChain + LLamaParse + Vision Model"
+                description="An end-to-end solution enabling users to upload PDFs and query them. a multimodal RAG system capable of interpreting complex PDF layouts (charts, tables, text)"
                 stats={[
                   { value: "1.8s", label: "Retrieval Latency" },
                   { value: "92%+", label: "Answer Relevance" },
                   { value: "10k", label: "Token Context" },
                   { value: "23%", label: "Hallucination Drop" }
                 ]}
-                repoLink="https://github.com/jayesh-cmd/RAG-based-Document-Q-A-System"
-                demoLink="https://www.linkedin.com/posts/cmd-jayesh_ai-chatbot-generativeai-activity-7364632709245083648-lPvp?utm_source=share&utm_medium=member_desktop&rcm=ACoAAFlqJGoBl68XgWGQ56UL9i8cfNrN4L5nMUQ"
+                repoLink="https://github.com/jayesh-cmd/InsightLense-Research_Document"
+                demoLink="https://www.linkedin.com/posts/cmd-jayesh_generativeai-langchain-softwareengineering-activity-7403148694578958338-1Fj7/?utm_source=share&utm_medium=member_desktop&rcm=ACoAAFlqJGoBl68XgWGQ56UL9i8cfNrN4L5nMUQ"
               />
             </div>
           </div>
