@@ -20,39 +20,42 @@ Contact: +91 6264998382 | jayeshvishwakarma6028@gmail.com
 Links: GitHub (@jayesh-cmd), LinkedIn (@cmd-jayesh)
 
 SUMMARY:
-AI/ML Developer skilled in building machine learning and Generative AI systems with Python, XGBoost, and LangChain. Currently interning in Bangalore, developing enterprise-grade AI pipelines on FastAPI & GCP.
+Final-year MCA student specialising in AI application development and backend engineering. Experienced in building RAG pipelines, LLM-integrated APIs, and AI agents using FastAPI, LangChain, and GCP. Comfortable owning features end-to-end from prompt design to production deployment. Actively seeking AI/Backend internship or fresher roles.
 
 SKILLS:
 - Languages: Python, SQL
-- ML/DL: scikit-learn, Keras, TensorFlow, CNNs, Transfer Learning, YOLOv8, OpenCV, MediaPipe
-- GenAI & LLM: RAG Pipelines, LangChain, Vector DBs, OpenAI & Gemini APIs
-- Backend/Ops: FastAPI, Docker, GCP (Cloud Run, Vertex AI), Streamlit
-- Tools: PostgreSQL, Git, VS Code, Jupyter
+- AI & LLM: LangChain, RAG Pipelines, LLM Integration (Gemini, GPT-3.5, LLaMA 3.2), Prompt Engineering, Vector DBs (FAISS), Sentence-Transformers
+- Backend: FastAPI, REST APIs, Webhooks, Async Programming, Docker, Streamlit
+- Cloud & DevOps: GCP (Cloud Run, Vertex AI), Git, GitHub
+- Databases: PostgreSQL, SQL, Row-Level Security (RLS)
+- Problem Solving: 150+ DSA problems
 
 EXPERIENCE:
-1. CommPlug Innovations (AI/ML Software Developer Intern) | Sept 2025 - Present
-   - Built an AI WhatsApp shopping assistant using Gemini AI & Django.
-   - Architected a multi-tenant PostgreSQL system with Row-Level Security.
-   - Handled 100+ daily messages with sub-2s response time using FastAPI & ThreadPoolExecutor.
-   - Reduced query resolution time by 60% with context-aware conversation memory.
+1. CommPlug Innovations (AI/ML Software Developer Intern) | Sept 2025 - Dec 2025
+   - Built an AI-powered B2B sales agent using Gemini API integrated with WhatsApp Business API for end-to-end order conversations.
+   - Implemented multi-tenant PostgreSQL system with Row-Level Security for strict data isolation.
+   - Designed async webhook handling using FastAPI and ThreadPoolExecutor with sub-2s response time.
+   - Improved system stability through automated testing and validation pipelines.
 
 PROJECTS:
-1. AI-Driven Financial Fraud Detection System
-   - XGBoost + FastAPI. Trained on 6.3M+ transactions. AUC 0.9998.
-   - Integrated GPT-3.5 for human-readable explanations of fraud flags.
-   
-2. PageSense - Context-Aware Browser Assistant (RAG)
-   - Chrome extension answering queries via LLaMa 3.2 & Sentence-Transformers.
-   - Used FAISS for semantic search (<2s latency).
-   - Reduced search time by ~80%.
+1. PageSense - Context-Aware Browser Assistant (RAG)
+   - Chrome extension chatbot that answers queries on any webpage using a custom RAG pipeline.
+   - Uses FastAPI backend, FAISS for semantic search (<2s latency), and Sentence-Transformers.
+   - Improved answer relevance via prompt tuning and chunk optimization.
 
-3. InsightLense - Multi Model RAG
-   - Architected a multimodal RAG system capable of interpreting complex PDF layouts (charts, tables, text),
-   - achieving 95% accuracy in trend analysis vs. text-only models
+2. InsightLense - Multimodal Research Document Assistant
+   - Built a multimodal RAG system for parsing complex PDFs (charts, tables, text).
+   - Implemented Hybrid Retrieval (BM25 + FAISS) for better accuracy.
+   - Added session persistence and optimized ingestion for large documents.
+
+3. AI-Driven Financial Fraud Detection API
+   - Built with XGBoost + FastAPI on 6.3M+ transactions with high recall and sub-100ms inference.
+   - Engineered behavioral fraud features.
+   - Integrated GPT-3.5 for explainable fraud reports.
 
 EDUCATION:
-- Integrated MCA at Acropolis Institute, Indore (2022-2027)
-- Solved 100+ DSA problems (NeetCode 250).
+- Integrated MCA at Acropolis Institute, Indore (Expected 2027)
+- Relevant Coursework: DSA, DBMS, Computer Networks, OS
 ---
 
 GUIDELINES:

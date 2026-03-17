@@ -43,58 +43,74 @@ Contact: +91 6264998382 | jayeshvishwakarma6028@gmail.com
 Links: GitHub (@jayesh-cmd), LinkedIn (@cmd-jayesh)
 
 SUMMARY:
-AI/ML Developer skilled in building machine learning and Generative AI systems with Python, XGBoost, and LangChain. Currently interning in Bangalore, developing enterprise-grade AI pipelines on FastAPI & GCP.
+Final-year MCA student specialising in AI application development and backend engineering. Experienced in building RAG pipelines, LLM-integrated APIs, and AI agents using FastAPI, LangChain, and GCP. Comfortable owning features end-to-end from prompt design to production deployment. Actively seeking AI/Backend internship or fresher roles.
 
 SKILLS:
 - Languages: Python, SQL
-- ML/DL: scikit-learn, Keras, TensorFlow, CNNs, Transfer Learning, YOLOv8, OpenCV, MediaPipe
-- GenAI & LLM: RAG Pipelines, LangChain, Vector DBs, OpenAI & Gemini APIs
-- Backend/Ops: FastAPI, Docker, GCP (Cloud Run, Vertex AI), Streamlit
-- Tools: PostgreSQL, Git, VS Code, Jupyter
+- AI & LLM: LangChain, RAG Pipelines, LLM Integration (Gemini, GPT-3.5, LLaMA 3.2), Prompt Engineering, Vector DBs (FAISS), Sentence-Transformers
+- Backend: FastAPI, REST APIs, Webhooks, Async Programming, Docker, Streamlit
+- Cloud & DevOps: GCP (Cloud Run, Vertex AI), Git, GitHub
+- Databases: PostgreSQL, SQL, Row-Level Security (RLS)
+- Problem Solving: 150+ DSA problems
 
 EXPERIENCE:
-1. CommPlug Innovations (AI/ML Software Developer Intern) | Sept 2025 - Present
-   - Built an AI WhatsApp shopping assistant using Gemini AI & Django.
-   - Architected a multi-tenant PostgreSQL system with Row-Level Security.
-   - Handled 100+ daily messages with sub-2s response time using FastAPI & ThreadPoolExecutor.
-   - Reduced query resolution time by 60% with context-aware conversation memory.
+1. CommPlug Innovations (AI/ML Software Developer Intern) | Sept 2025 - Dec 2025
+   - Built an AI-powered B2B sales agent using Gemini API integrated with WhatsApp Business API for end-to-end order conversations.
+   - Implemented multi-tenant PostgreSQL system with Row-Level Security for strict data isolation.
+   - Designed async webhook handling using FastAPI and ThreadPoolExecutor with sub-2s response time.
+   - Improved system stability through automated testing and validation pipelines.
 
 PROJECTS:
-1. AI-Driven Financial Fraud Detection System
-   - XGBoost + FastAPI. Trained on 6.3M+ transactions. AUC 0.9998.
-   - Integrated GPT-3.5 for human-readable explanations of fraud flags.
-   
-2. PageSense - Context-Aware Browser Assistant (RAG)
-   - Chrome extension answering queries via LLaMa 3.2 & Sentence-Transformers.
-   - Used FAISS for semantic search (<2s latency).
-   - Reduced search time by ~80%.
+1. PageSense - Context-Aware Browser Assistant (RAG)
+   - Chrome extension chatbot that answers queries on any webpage using a custom RAG pipeline.
+   - Uses FastAPI backend, FAISS for semantic search (<2s latency), and Sentence-Transformers.
+   - Improved answer relevance via prompt tuning and chunk optimization.
 
-3. InsightLense - Multi Model RAG
-   - Architected a multimodal RAG system capable of interpreting complex PDF layouts (charts, tables, text),
-   - achieving 95% accuracy in trend analysis vs. text-only models
+2. InsightLense - Multimodal Research Document Assistant
+   - Built a multimodal RAG system for parsing complex PDFs (charts, tables, text).
+   - Implemented Hybrid Retrieval (BM25 + FAISS) for better accuracy.
+   - Added session persistence and optimized ingestion for large documents.
+
+3. AI-Driven Financial Fraud Detection API
+   - Built with XGBoost + FastAPI on 6.3M+ transactions with high recall and sub-100ms inference.
+   - Engineered behavioral fraud features.
+   - Integrated GPT-3.5 for explainable fraud reports.
 
 EDUCATION:
-- Integrated MCA at Acropolis Institute, Indore (2022-2027)
-- Solved 100+ DSA problems (NeetCode 250).
+- Integrated MCA at Acropolis Institute, Indore (Expected 2027)
+- Relevant Coursework: DSA, DBMS, Computer Networks, OS
 ---
 
 GUIDELINES:
 1. If asked "Who are you?", say you are a RAG chatbot created by Jayesh and integrated into this portfolio.
 2. Be concise but enthusiastic.
-3. Always reply in strucutred way , write in next line when needed and always reply in strucured and readable way
-4. Dont try to use any bold character and dont use ** anywhere just use simple english and reply naturally
+3. Always reply in structured way, write in next line when needed and always reply in structured and readable way
+4. Don't try to use any bold character and don't use ** anywhere just use simple english and reply naturally
 `;
 
 // --- SIMULATION LOGIC (Fallback for Preview without API Key) ---
 const simulateRAGResponse = (query) => {
   const q = query.toLowerCase();
-  if (q.includes('hello') || q.includes('hi')) return "Hey! I'm a RAG chatbot created by Jayesh for this portfolio. Ask me about his projects! 🚀";
-  if (q.includes('who are you')) return "I'm a RAG chatbot built by Jayesh and integrated here to show off his GenAI skills. Pretty meta, right? 😎";
-  if (q.includes('python') || q.includes('langchain') || q.includes('skill')) return "Jayesh is a Python wizard! 🐍 He uses Python, LangChain, and FastAPI to build cool AI stuff.";
-  if (q.includes('project') || q.includes('rag') || q.includes('fraud')) return "He has killer projects: 1) Fraud Detection (99.98% AUC), 2) PageSense (Browser RAG), and 3) Doc Q&A (Reduced hallucinations by 23%).";
-  if (q.includes('experience') || q.includes('work') || q.includes('intern')) return "He's an AI/ML Intern at CommPlug Innovations, building WhatsApp shopping assistants with Gemini AI. 💼";
-  if (q.includes('contact') || q.includes('email')) return "Reach him at jayeshvishwakarma6028@gmail.com. He loves talking tech!";
-  return "Interesting question! Ask me about his 'RAG Pipelines', 'Fraud Detection', or 'CommPlug Internship'. 🤖";
+
+  if (q.includes('hello') || q.includes('hi'))
+    return "Hey! I'm a RAG chatbot created by Jayesh for this portfolio. Ask me about his AI and backend projects! 🚀";
+
+  if (q.includes('who are you'))
+    return "I'm a RAG chatbot built by Jayesh and integrated here to showcase his Generative AI and backend engineering skills. 😎";
+
+  if (q.includes('python') || q.includes('langchain') || q.includes('skill'))
+    return "Jayesh works with Python, LangChain, and FastAPI to build production-ready AI systems, including RAG pipelines and scalable backends.";
+
+  if (q.includes('project') || q.includes('rag') || q.includes('fraud'))
+    return "His key projects include: 1) PageSense (browser-based RAG assistant), 2) InsightLense (multimodal RAG for PDFs), and 3) a fraud detection API built on 6.3M+ transactions.";
+
+  if (q.includes('experience') || q.includes('work') || q.includes('intern'))
+    return "He worked as an AI/ML Software Developer Intern in Bangalore, where he built a WhatsApp-based AI sales agent using Gemini and FastAPI.";
+
+  if (q.includes('contact') || q.includes('email'))
+    return "Reach him at jayeshvishwakarma6028@gmail.com — always open to AI and backend opportunities!";
+
+  return "Interesting question! You can ask about his RAG pipelines, backend systems, or internship experience. 🤖";
 };
 
 // --- COMPONENTS ---
@@ -509,7 +525,7 @@ export default function Portfolio() {
             </h1>
             
             <p className="text-lg text-gray-500 mb-10 max-w-2xl mx-auto leading-relaxed font-sans">
-                AI/ML Developer specializing in Artificial Intelligence, Machine Learning and Generative AI, building scalable and automated systems.
+                AI Application Developer specializing in Artificial Intelligence, Backend and Machine Learning, building scalable and automated systems.
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
@@ -519,7 +535,7 @@ export default function Portfolio() {
                 <Button variant="ghost" href="https://github.com/jayesh-cmd" className="gap-2">
                 <Github size={18} /> GitHub
                 </Button>
-                <Button variant="ghost" href="https://drive.google.com/file/d/1u-fcunbchizGs6fQ93ZGjcaIslwwT13S/view?usp=sharing" className="gap-2">
+                <Button variant="ghost" href="https://drive.google.com/file/d/1-0CQLkTcgB7jSY7HJlHR1GQdN8E7Ip1H/view?usp=sharing" className="gap-2">
                 <FileText size={18} /> Resume
                 </Button>
             </div>
@@ -547,7 +563,7 @@ export default function Portfolio() {
                             Bridging <span className="text-blue-600 italic">Research</span> & <span className="text-purple-600 italic">Reality</span>.
                         </h2>
                         <p className="text-gray-600 leading-relaxed text-lg font-sans">
-                            I’m an fresher engineer who builds intelligent systems end-to-end. I turn complex ML concepts into practical, high-impact applications — from shaping efficient RAG pipelines to crafting scalable FastAPI backends that ship reliably in production.
+                            I’m a fresher AI and backend engineer who builds intelligent systems end-to-end. I turn complex AI concepts into practical, high-impact applications — from designing efficient RAG pipelines to developing scalable FastAPI backends that run reliably in production.
                         </p>
                         <p className="text-gray-600 leading-relaxed text-lg font-sans">
                         </p>
@@ -592,7 +608,7 @@ export default function Portfolio() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <FeatureCard 
               title="CommPlug Innovations"
-              subtitle="AI/ML Software Developer Intern | Sept 2025 - Present"
+              subtitle="AI/ML Software Developer Intern | Sept 2025 - Dec 2025 \n Bangalore"
               description="Architecting a multi-tenant system with Row-Level Security. Developed an AI-powered WhatsApp shopping assistant using Google Gemini AI, Django, and WhatsApp Business API."
               icon={Bot}
               imageGradient="from-blue-400 to-purple-500"
@@ -601,7 +617,7 @@ export default function Portfolio() {
             <FeatureCard 
               title="Education: MCA"
               subtitle="Acropolis Institute, Indore | 2022 - 2027"
-              description="Integrated Master of Computer Applications. Focusing on Core Algorithms, Applied Math for ML, and Data Structures. Successfully solved 100+ DSA problems on LeetCode."
+              description="Integrated Master of Computer Applications. Focused on core computer science subjects like Data Structures, Algorithms, OOPs, DBMS, and Operating Systems, with hands-on problem solving experience (150+ DSA problems on LeetCode & Across Plateforms)."
               icon={Terminal}
               imageGradient="from-green-400 to-teal-500"
             />
@@ -699,27 +715,25 @@ export default function Portfolio() {
 
           <div className="border-t border-gray-200">
             <AccordionItem 
-              question="What is my core Machine Learning stack?"
-              answer="My ML stack is built around Python, using Scikit-learn for classical models and TensorFlow/Keras for deep learning. I specialize in Computer Vision with YOLOv8, OpenCV, and MediaPipe, and I'm experienced in building optimized CNNs and Transfer Learning pipelines."
+              question="What is my core AI & Backend stack?"
+              answer="My stack is centered around AI and backend development using Python. I build LLM-powered systems with RAG pipelines, LangChain, and modern AI APIs, and develop scalable backends using FastAPI, async processing, and PostgreSQL, focusing on performance, reliability, and production-ready deployments."
               isOpen={openAccordion === 0}
               onClick={() => setOpenAccordion(0 === openAccordion ? -1 : 0)}
             />
             <AccordionItem 
               question="How do I handle Generative AI & LLMs?"
-              answer="I specialize in RAG (Retrieval-Augmented Generation) pipelines using LangChain and Vector Databases like FAISS. I integrate OpenAI and Gemini APIs for inference and optimize context windows to reduce hallucinations."
-              isOpen={openAccordion === 1}
+              answer="I work with Generative AI by building RAG pipelines, integrating LLMs like Gemini, GPT-3.5, and LLaMA into applications using LangChain. I focus on prompt engineering, context management, and retrieval optimization to deliver accurate, reliable, and production-ready AI systems."
               onClick={() => setOpenAccordion(1 === openAccordion ? -1 : 1)}
             />
             <AccordionItem 
               question="What about Backend & Deployment?"
-              answer="My production stack includes FastAPI for high-performance async APIs, PostgreSQL for data storage, and Docker for containerization. I deploy on Google Cloud Platform (Cloud Run, Vertex AI) to ensure scalability."
+              answer="My backend and deployment stack is built around FastAPI for high-performance async APIs, PostgreSQL for reliable data management, and Docker for containerization. I deploy on GCP (Cloud Run, Vertex AI), focusing on scalability, low-latency performance, and production-ready systems."
               isOpen={openAccordion === 2}
               onClick={() => setOpenAccordion(2 === openAccordion ? -1 : 2)}
             />
              <AccordionItem 
               question="Languages & Tools?"
-              answer="Python is my primary language, supported by SQL for data manipulation. I use Git/GitHub for version control, VS Code as my IDE, and Jupyter/Colab for experimentation and prototyping."
-              isOpen={openAccordion === 3}
+              answer="Python is my primary language, with SQL for data handling and querying. I use Git/GitHub for version control, VS Code for development, and Jupyter/Colab for rapid experimentation and prototyping."
               onClick={() => setOpenAccordion(3 === openAccordion ? -1 : 3)}
             />
           </div>
