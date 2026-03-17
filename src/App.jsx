@@ -608,7 +608,7 @@ export default function Portfolio() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <FeatureCard 
               title="CommPlug Innovations"
-              subtitle="AI/ML Software Developer Intern | Sept 2025 - Dec 2025 \n Bangalore"
+              subtitle="AI/ML Software Developer Intern | Sept 2025 - Dec 2025  Bangalore"
               description="Architecting a multi-tenant system with Row-Level Security. Developed an AI-powered WhatsApp shopping assistant using Google Gemini AI, Django, and WhatsApp Business API."
               icon={Bot}
               imageGradient="from-blue-400 to-purple-500"
