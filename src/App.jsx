@@ -627,83 +627,94 @@ export default function Portfolio() {
 
       {/* --- Projects Section --- */}
       <section id="projects" className="bg-gray-950 py-32 px-6 relative overflow-hidden z-10">
-        <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/stardust.png')] opacity-20"></div>
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[500px] bg-indigo-900/30 rounded-full blur-[100px] pointer-events-none"></div>
-        <div className="absolute bottom-0 right-0 w-[600px] h-[600px] bg-blue-900/20 rounded-full blur-[80px] pointer-events-none"></div>
+  <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/stardust.png')] opacity-20"></div>
+  <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[500px] bg-indigo-900/30 rounded-full blur-[100px] pointer-events-none"></div>
+  <div className="absolute bottom-0 right-0 w-[600px] h-[600px] bg-blue-900/20 rounded-full blur-[80px] pointer-events-none"></div>
 
-        <div className="container mx-auto max-w-6xl relative z-10">
-          <div className="flex flex-col md:flex-row justify-between items-end mb-20 gap-6">
-            <div>
-              <h2 className="text-4xl md:text-6xl font-serif text-white mb-4">
-                Constructing the <br />
-                <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-200 to-indigo-400">Future of AI</span>
-              </h2>
-              <p className="text-gray-400 max-w-xl text-lg font-sans">
-                From fraud detection to context-aware browser assistants, I build systems that understand and act.
-              </p>
+  <div className="container mx-auto max-w-6xl relative z-10">
+    <div className="flex flex-col md:flex-row justify-between items-end mb-20 gap-6">
+      <div>
+        <h2 className="text-4xl md:text-6xl font-serif text-white mb-4">
+          Building <br />
+          <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-200 to-indigo-400">
+            AI Systems in Production
+          </span>
+        </h2>
+        <p className="text-gray-400 max-w-xl text-lg font-sans">
+          Focused on RAG pipelines, multimodal AI, and scalable backend systems designed for real-world performance.
+        </p>
+      </div>
+      <Button variant="outline" href="https://github.com/jayesh-cmd">
+        View Full GitHub <ExternalLink size={16} />
+      </Button>
+    </div>
+
+    <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+
+      {/* PageSense - FIRST (as per resume) */}
+      <div className="lg:col-span-1 space-y-6">
+        <div className="bg-gradient-to-br from-blue-600 to-indigo-700 rounded-3xl p-8 text-white h-full flex flex-col justify-between group hover:shadow-2xl hover:shadow-blue-900/20 transition-all relative overflow-hidden">
+          <div className="relative z-10">
+            <Search className="mb-6 opacity-80" size={32} />
+            <h3 className="text-2xl font-serif mb-2">PageSense</h3>
+            <p className="text-blue-100 text-sm leading-relaxed mb-4 font-sans">
+              A Chrome extension powered by a custom RAG pipeline that extracts live webpage content and delivers context-aware answers using LLaMA 3.2.
+            </p>
+
+            <div className="flex gap-2 mt-4">
+              <a href="https://www.linkedin.com/posts/cmd-jayesh_ai-machinelearning-generativeai-activity-7356755637784961024-YtXN" target="_blank" rel="noopener noreferrer" className="p-2 bg-white text-blue-600 rounded-full hover:scale-110 transition-transform">
+                <PlayCircle size={16} />
+              </a>
+              <a href="https://github.com/jayesh-cmd/pagesense-rag-extension" target="_blank" rel="noopener noreferrer" className="p-2 bg-white/20 text-white rounded-full hover:bg-white/30 transition-colors">
+                <Github size={16} />
+              </a>
             </div>
-            <Button variant="outline" href="https://github.com/jayesh-cmd">
-              View Full GitHub <ExternalLink size={16} />
-            </Button>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-            <div className="lg:col-span-2">
-              <CosmicProject 
-                title="AI-Driven Financial Fraud Detection System"
-                role="XGBoost + FastAPI"
-                description="Engineered a fraud-detection model trained on 6.3M+ transactions. Designed statistical features capturing behavioral anomalies like 'account drained to $0'. Integrated GPT-3.5 for human-readable explainability."
-                stats={[
-                  { value: "0.9998", label: "AUC Score" },
-                  { value: "<100ms", label: "Inference Time" }
-                ]}
-                repoLink="https://github.com/jayesh-cmd/FinSecure-AI"
-                demoLink="https://www.linkedin.com/posts/cmd-jayesh_machinelearning-frauddetection-ai-activity-7385927884600737792-4lgX?utm_source=share&utm_medium=member_desktop&rcm=ACoAAFlqJGoBl68XgWGQ56UL9i8cfNrN4L5nMUQ"
-              />
-            </div>
-
-            <div className="lg:col-span-1 space-y-6">
-               <div className="bg-gradient-to-br from-blue-600 to-indigo-700 rounded-3xl p-8 text-white h-full flex flex-col justify-between group hover:shadow-2xl hover:shadow-blue-900/20 transition-all relative overflow-hidden">
-                 <div className="relative z-10">
-                   <Search className="mb-6 opacity-80" size={32} />
-                   <h3 className="text-2xl font-serif mb-2">PageSense</h3>
-                   <p className="text-blue-100 text-sm leading-relaxed mb-4 font-sans">
-                     Context-Aware Browser Assistant using RAG. Extracts live page content and answers queries using LLaMa 3.2.
-                   </p>
-                   
-                    <div className="flex gap-2 mt-4">
-                      <a href="https://www.linkedin.com/posts/cmd-jayesh_ai-machinelearning-generativeai-activity-7356755637784961024-YtXN?utm_source=share&utm_medium=member_desktop&rcm=ACoAAFlqJGoBl68XgWGQ56UL9i8cfNrN4L5nMUQ" target="_blank" rel="noopener noreferrer" className="p-2 bg-white text-blue-600 rounded-full hover:scale-110 transition-transform"><PlayCircle size={16} /></a>
-                      <a href="https://github.com/jayesh-cmd/pagesense-rag-extension" target="_blank" rel="noopener noreferrer" className="p-2 bg-white/20 text-white rounded-full hover:bg-white/30 transition-colors"><Github size={16} /></a>
-                    </div>
-
-                 </div>
-                 <div className="pt-4 border-t border-white/20 mt-6 relative z-10">
-                    <div>
-                        <div className="text-3xl font-serif">~80%</div>
-                        <div className="text-xs uppercase tracking-wide opacity-70 font-sans">Search Time Reduced</div>
-                     </div>
-                 </div>
-               </div>
-            </div>
-
-            <div className="lg:col-span-3">
-              <CosmicProject 
-                title="InsightLense - Multi Model RAG"
-                role="LangChain + LLamaParse + Vision Model"
-                description="An end-to-end solution enabling users to upload PDFs and query them. a multimodal RAG system capable of interpreting complex PDF layouts (charts, tables, text)"
-                stats={[
-                  { value: "95%", label: "Retrieval accuracy" },
-                  { value: "92%+", label: "Answer Relevance" },
-                  { value: "Hybrid Retrieval", label: "BM25 + FAISS" },
-                  { value: "Multi-Model", label: "RAG + Vision + LLamaParse" }
-                ]}
-                repoLink="https://github.com/jayesh-cmd/InsightLense-Research_Document"
-                demoLink="https://www.linkedin.com/posts/cmd-jayesh_generativeai-langchain-softwareengineering-activity-7403148694578958338-1Fj7/?utm_source=share&utm_medium=member_desktop&rcm=ACoAAFlqJGoBl68XgWGQ56UL9i8cfNrN4L5nMUQ"
-              />
+          <div className="pt-4 border-t border-white/20 mt-6 relative z-10">
+            <div>
+              <div className="text-3xl font-serif">&lt;2s</div>
+              <div className="text-xs uppercase tracking-wide opacity-70 font-sans">Retrieval Latency</div>
             </div>
           </div>
         </div>
-      </section>
+      </div>
+
+      {/* InsightLense - SECOND */}
+      <div className="lg:col-span-2">
+        <CosmicProject 
+          title="InsightLense - Multimodal RAG System"
+          role="FastAPI + Hybrid Retrieval (BM25 + FAISS)"
+          description="A multimodal document assistant that parses complex PDFs (charts, tables, text) using a hybrid RAG pipeline. Designed for accurate research document Q&A with session persistence and optimized ingestion."
+          stats={[
+            { value: "95%", label: "Retrieval Accuracy" },
+            { value: "Hybrid", label: "BM25 + FAISS" },
+            { value: "Session-Based", label: "Persistent Context" }
+          ]}
+          repoLink="https://github.com/jayesh-cmd/InsightLense-Research_Document"
+          demoLink="https://www.linkedin.com/posts/cmd-jayesh_generativeai-langchain-softwareengineering-activity-7403148694578958338-1Fj7/"
+        />
+      </div>
+
+      {/* Fraud Detection - THIRD */}
+      <div className="lg:col-span-3">
+        <CosmicProject 
+          title="AI-Driven Financial Fraud Detection API"
+          role="XGBoost + FastAPI + GPT-3.5"
+          description="Built a high-performance fraud detection system trained on 6.3M+ transactions with engineered behavioral features. Deployed via FastAPI with sub-100ms inference and integrated LLM-based explainability for decision transparency."
+          stats={[
+            { value: "0.9998", label: "AUC Score" },
+            { value: "<100ms", label: "Inference Time" },
+            { value: "LLM Reports", label: "Explainability" }
+          ]}
+          repoLink="https://github.com/jayesh-cmd/FinSecure-AI"
+          demoLink="https://www.linkedin.com/posts/cmd-jayesh_machinelearning-frauddetection-ai-activity-7385927884600737792-4lgX/"
+        />
+      </div>
+
+    </div>
+  </div>
+</section>
 
       {/* --- Skills / FAQ Section --- */}
       <section id="skills" className="py-32 px-6 bg-white relative z-10">
