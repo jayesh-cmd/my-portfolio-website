@@ -27,7 +27,8 @@ import {
   Zap,
   Layers,
   Instagram,
-  Youtube
+  Youtube,
+  Menu
 } from 'lucide-react';
 
 // --- DATA: RESUME CONTEXT (The "Knowledge Base" for RAG) ---
@@ -555,7 +556,7 @@ const SnakeGameMode = ({ gameActive, setGameActive, score, setScore }) => {
         const y = r * gridSize;
         // Test a 3x1 block for starting snake
         const rect = { x, y, width: gridSize * 3, height: gridSize };
-        
+
         let overlaps = false;
         for (const obs of obstacleRects) {
           if (intersects(rect, obs)) {
@@ -576,7 +577,7 @@ const SnakeGameMode = ({ gameActive, setGameActive, score, setScore }) => {
     const rows = Math.floor(canvasHeight / gridSize);
     let margin = gridSize * 2.5; // Start with a safe 50px buffer zone
     let attempts = 0;
-    
+
     while (attempts < 1000) {
       const col = Math.floor(Math.random() * (cols - 2)) + 1;
       const row = Math.floor(Math.random() * (rows - 2)) + 1;
@@ -585,7 +586,7 @@ const SnakeGameMode = ({ gameActive, setGameActive, score, setScore }) => {
       const eggRect = { x, y, width: gridSize, height: gridSize };
 
       let overlaps = false;
-      
+
       // Check collision with obstacles including the buffer zone
       for (const obs of obstacleRects) {
         if (intersectsWithMargin(eggRect, obs, margin)) {
@@ -593,7 +594,7 @@ const SnakeGameMode = ({ gameActive, setGameActive, score, setScore }) => {
           break;
         }
       }
-      
+
       // Check collision with snake
       if (!overlaps) {
         for (const segment of snakeRef.current) {
@@ -634,7 +635,7 @@ const SnakeGameMode = ({ gameActive, setGameActive, score, setScore }) => {
     directionRef.current = { x: gridSize, y: 0 };
     nextDirectionRef.current = { x: gridSize, y: 0 };
     growPendingRef.current = 0;
-    
+
     scoreRef.current = 0;
     setScore(0);
     setModalState(null);
@@ -768,7 +769,7 @@ const SnakeGameMode = ({ gameActive, setGameActive, score, setScore }) => {
   const drawSnakeSegment = (ctx, x, y, index, dx, dy, timestamp, isTail) => {
     const size = 20;
     const pixelSize = size / 8;
-    
+
     const drawPixel = (px, py, color) => {
       ctx.fillStyle = color;
       ctx.fillRect(x + px * pixelSize, y + py * pixelSize, pixelSize, pixelSize);
@@ -924,10 +925,10 @@ const SnakeGameMode = ({ gameActive, setGameActive, score, setScore }) => {
       const waveAmplitude = isHead ? 1.0 : 4.0;
       const waveFreq = 0.012;
       const wavePhase = index * 0.75;
-      
+
       let offsetX = 0;
       let offsetY = 0;
-      
+
       if (dy === 0) {
         offsetY = Math.sin(timestamp * waveFreq - wavePhase) * waveAmplitude;
       } else {
@@ -1124,6 +1125,8 @@ export default function Portfolio() {
   const [activeExperienceTab, setActiveExperienceTab] = useState(0);
   const [gameActive, setGameActive] = useState(false);
   const [score, setScore] = useState(0);
+  const [showMobileWarning, setShowMobileWarning] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const cursorVisible = useTypingCursor();
 
   useEffect(() => {
@@ -1131,6 +1134,23 @@ export default function Portfolio() {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  useEffect(() => {
+    if (showMobileWarning) {
+      const timer = setTimeout(() => {
+        setShowMobileWarning(false);
+      }, 3000);
+      return () => clearTimeout(timer);
+    }
+  }, [showMobileWarning]);
+
+  const toggleGameMode = () => {
+    if (window.innerWidth < 1024) {
+      setShowMobileWarning(true);
+      return;
+    }
+    setGameActive(!gameActive);
+  };
 
   const scrollToSection = (id) => {
     document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
@@ -1152,22 +1172,22 @@ export default function Portfolio() {
           <div className="flex items-center gap-2">
             <div className="w-8 h-8 bg-black rounded-full flex items-center justify-center text-white font-serif font-bold text-lg">J</div>
             <span className="font-medium tracking-tight text-lg font-sans">Jayesh.</span>
-            
+
             {/* Game mode toggle */}
             <button
-              onClick={() => setGameActive(!gameActive)}
-              className="glass-ui ml-3 px-3 py-1 rounded-full text-[10px] font-semibold uppercase tracking-wider font-sans transition-all flex items-center gap-1.5 cursor-pointer shadow-sm"
+              onClick={toggleGameMode}
+              className="glass-ui ml-2.5 px-2 py-0.5 rounded-full text-[9px] font-semibold uppercase tracking-wider font-sans transition-all flex items-center gap-1 cursor-pointer shadow-sm"
             >
-              <span className={`w-1.5 h-1.5 rounded-full transition-all duration-300 ${
-                gameActive
+              <span className={`w-1.5 h-1.5 rounded-full transition-all duration-300 ${gameActive
                   ? 'bg-emerald-400 shadow-[0_0_8px_#34d399] scale-110 animate-pulse'
                   : 'bg-emerald-950/60 border border-emerald-500/20'
-              }`}></span>
+                }`}></span>
               <span>Game Mode: {gameActive ? 'ON' : 'OFF'}</span>
             </button>
           </div>
 
-          <div className="flex items-center gap-6 md:gap-8 text-sm font-medium text-gray-600 font-sans">
+          {/* Desktop Nav Links */}
+          <div className="hidden md:flex items-center gap-6 md:gap-8 text-sm font-medium text-gray-600 font-sans">
             {gameActive && (
               <div className="glass-ui font-mono text-xs font-semibold px-3 py-1 rounded-full shadow-md select-none mr-2">
                 {score}/5
@@ -1177,8 +1197,88 @@ export default function Portfolio() {
             <button onClick={() => scrollToSection('projects')} className="hover:text-black transition-colors">Projects</button>
             <button onClick={() => scrollToSection('skills')} className="hover:text-black transition-colors">Skills</button>
           </div>
+
+          {/* Mobile Menu Toggle Button */}
+          <div className="flex md:hidden items-center gap-3">
+            {gameActive && (
+              <div className="glass-ui font-mono text-xs font-semibold px-2 py-0.5 rounded-full shadow-md select-none">
+                {score}/5
+              </div>
+            )}
+            <button
+              onClick={() => setMobileMenuOpen(true)}
+              className="p-1.5 rounded-full border border-gray-200/50 bg-white/50 backdrop-blur-sm text-gray-600 hover:text-black transition-colors cursor-pointer"
+              aria-label="Open mobile menu"
+            >
+              <Menu size={18} />
+            </button>
+          </div>
         </div>
       </nav>
+
+      {/* Mobile Drawer (Slide from left) */}
+      <div className={`fixed inset-0 z-50 transition-all duration-300 ${mobileMenuOpen ? 'visible pointer-events-auto' : 'invisible pointer-events-none'}`}>
+        {/* Backdrop overlay */}
+        <div
+          onClick={() => setMobileMenuOpen(false)}
+          className={`absolute inset-0 bg-black/30 backdrop-blur-sm transition-opacity duration-300 ${mobileMenuOpen ? 'opacity-100' : 'opacity-0'}`}
+        />
+        
+        {/* Drawer content panel */}
+        <div className={`absolute top-0 left-0 bottom-0 w-[260px] bg-white/95 backdrop-blur-md border-r border-gray-100 shadow-2xl flex flex-col justify-between p-6 transition-transform duration-300 ease-out transform ${mobileMenuOpen ? 'translate-x-0' : '-translate-x-full'}`}>
+          <div>
+            {/* Header branding & close button */}
+            <div className="flex justify-between items-center mb-10">
+              <div className="flex items-center gap-2">
+                <div className="w-7 h-7 bg-black rounded-full flex items-center justify-center text-white font-serif font-bold text-sm">J</div>
+                <span className="font-semibold tracking-tight text-base font-sans">Jayesh.</span>
+              </div>
+              <button
+                onClick={() => setMobileMenuOpen(false)}
+                className="p-1.5 rounded-full hover:bg-gray-100 text-gray-500 hover:text-black transition-colors cursor-pointer"
+                aria-label="Close menu"
+              >
+                <X size={18} />
+              </button>
+            </div>
+
+            {/* Navigation links */}
+            <div className="flex flex-col gap-4 text-base font-medium font-sans">
+              <button
+                onClick={() => {
+                  scrollToSection('experience');
+                  setMobileMenuOpen(false);
+                }}
+                className="text-left py-2.5 px-4 rounded-2xl hover:bg-gray-50 text-gray-600 hover:text-black transition-colors"
+              >
+                Experience
+              </button>
+              <button
+                onClick={() => {
+                  scrollToSection('projects');
+                  setMobileMenuOpen(false);
+                }}
+                className="text-left py-2.5 px-4 rounded-2xl hover:bg-gray-50 text-gray-600 hover:text-black transition-colors"
+              >
+                Projects
+              </button>
+              <button
+                onClick={() => {
+                  scrollToSection('skills');
+                  setMobileMenuOpen(false);
+                }}
+                className="text-left py-2.5 px-4 rounded-2xl hover:bg-gray-50 text-gray-600 hover:text-black transition-colors"
+              >
+                Skills
+              </button>
+            </div>
+          </div>
+
+          <div className="border-t border-gray-100 pt-6">
+            <p className="text-[10px] text-gray-400 font-sans text-center">© {new Date().getFullYear()} Jayesh Vishwakarma</p>
+          </div>
+        </div>
+      </div>
 
       {/* --- Hero Section --- */}
       <header className="relative pt-40 pb-10 px-6">
@@ -1263,9 +1363,9 @@ export default function Portfolio() {
                   <div className="absolute inset-0 bg-gradient-to-tr from-indigo-300 to-purple-300 rounded-2xl opacity-30 blur-2xl scale-110"></div>
                   {/* Avatar box */}
                   <div className="relative w-52 h-64 md:w-60 md:h-72 rounded-2xl overflow-hidden border-2 border-white shadow-2xl bg-gray-100">
-                    <img 
-                      src="/IMG_8556.jpg" 
-                      alt="Jayesh Vishwakarma" 
+                    <img
+                      src="/IMG_8556.jpg"
+                      alt="Jayesh Vishwakarma"
                       className="w-full h-full object-cover"
                     />
                   </div>
@@ -1405,6 +1505,7 @@ export default function Portfolio() {
               title="PageSense"
               role="Chrome Extension · RAG"
               icon={Search}
+              gradient="from-blue-500 to-indigo-600"
               stat="&lt;2s retrieval · LLaMA 3.2"
               bullets={[
                 "Chrome extension answering queries on any live webpage",
@@ -1420,6 +1521,7 @@ export default function Portfolio() {
               title="InsightLense"
               role="Multimodal RAG · FastAPI"
               icon={Layers}
+              gradient="from-blue-500 to-indigo-600"
               stat="95% accuracy · BM25 + FAISS"
               bullets={[
                 "Parses complex PDFs: charts, tables, and text",
@@ -1435,6 +1537,7 @@ export default function Portfolio() {
               title="FinSecure AI"
               role="XGBoost · FastAPI · GPT-3.5"
               icon={Zap}
+              gradient="from-blue-500 to-indigo-600"
               stat="0.9998 AUC · &lt;100ms · 6.3M+ txns"
               bullets={[
                 "Fraud detection trained on 6.3M+ transactions",
@@ -1525,6 +1628,14 @@ export default function Portfolio() {
       </footer>
 
       <SnakeGameMode gameActive={gameActive} setGameActive={setGameActive} score={score} setScore={setScore} />
+
+      {showMobileWarning && (
+        <div className="fixed bottom-8 left-1/2 -translate-x-1/2 z-50 animate-fade-in-up pointer-events-none">
+          <div className="glass-ui bg-white/95 border border-amber-200 text-amber-900 px-4 py-2 rounded-xl shadow-xl flex items-center gap-2 font-medium text-xs font-sans tracking-wide">
+            <span>⚠️ Game Mode is only available on Laptop or PC</span>
+          </div>
+        </div>
+      )}
 
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap');
