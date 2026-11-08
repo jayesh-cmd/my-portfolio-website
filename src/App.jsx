@@ -1364,7 +1364,7 @@ export default function Portfolio() {
                 <div className="pt-2">
                   <p className="text-xs text-gray-400 uppercase tracking-widest mb-3 font-sans font-medium">Technologies I work with</p>
                   <div className="grid grid-cols-2 gap-x-8 gap-y-1.5">
-                    {['Python', 'FastAPI', 'LangChain', 'RAG Systems', 'PostgreSQL / VectorDB', 'Docker & GCP'].map((tech) => (
+                    {['Python / JavaScript', 'FastAPI / Django', 'LangChain', 'RAG Systems / AI Agents', 'PostgreSQL / VectorDB', 'Docker & GCP'].map((tech) => (
                       <div key={tech} className="flex items-center gap-2">
                         <span className="text-indigo-400 text-xs">▸</span>
                         <span className="text-gray-700 text-sm font-sans">{tech}</span>
