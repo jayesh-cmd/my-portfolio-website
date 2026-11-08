@@ -52,9 +52,9 @@ SUMMARY:
 Final-year MCA student specialising in AI application development and backend engineering. Experienced in building RAG pipelines, LLM-integrated APIs, and AI agents using FastAPI, LangChain, and GCP. Comfortable owning features end-to-end from prompt design to production deployment. Actively seeking AI/Backend internship or fresher roles.
 
 SKILLS:
-- Languages: Python, SQL
-- AI & LLM: LangChain, RAG Pipelines, LLM Integration (Gemini, GPT-3.5, LLaMA 3.2), Prompt Engineering, Vector DBs (FAISS), Sentence-Transformers
-- Backend: FastAPI, REST APIs, Webhooks, Async Programming, Docker, Streamlit
+- Languages: Python, JavaScript, SQL
+- AI & LLM: LangChain, AI Agents, RAG Pipelines, LLM Integration (Gemini, GPT-3.5, LLaMA 3.2), Vector DBs (FAISS), Sentence-Transformers
+- Backend: FastAPI, Django, REST APIs, Docker, Streamlit
 - Cloud & DevOps: GCP (Cloud Run, Vertex AI), Git, GitHub
 - Databases: PostgreSQL, SQL, Row-Level Security (RLS)
 - Problem Solving: 150+ DSA problems
