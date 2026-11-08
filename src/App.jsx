@@ -1386,7 +1386,7 @@ export default function Portfolio() {
                   {/* Avatar box */}
                   <div className="relative w-52 h-64 md:w-60 md:h-72 rounded-2xl overflow-hidden border-2 border-white shadow-2xl bg-gray-100">
                     <img
-                      src="/IMG_8556.jpg"
+                      src="/PIC.PNG"
                       alt="Jayesh Vishwakarma"
                       className="w-full h-full object-cover"
                     />
